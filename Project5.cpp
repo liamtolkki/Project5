@@ -13,22 +13,24 @@ using namespace std;
 
 int main()
 {
-    ifstream fileIn("wordlist_windows.txt"); //gets the word file
+    ifstream fileIn("wordlist_windows.txt"); // gets the word file
     vector<string> wordBank;
     cout << "Opening file..." << endl;
-    //make sure there is no error:
-    if (fileIn.good()) {
+    // make sure there is no error:
+    if (fileIn.good())
+    {
         string word;
         cout << "File opened sucessfully!" << endl;
-        while (!fileIn.eof()) {
+        while (!fileIn.eof())
+        {
             fileIn >> word;
             wordBank.push_back(word);
         }
-    } else {
+    }
+    else
+    {
         cerr << "Couldn't open file!" << endl;
     }
-
-
 
     return 0;
 }
