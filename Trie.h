@@ -14,4 +14,5 @@ public:
 private:
     int wordCount, size; // int vars
     bool insert(string str);
+    Node root;
 };
