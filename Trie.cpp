@@ -3,7 +3,7 @@ using namespace std;
 
 Trie::Trie()
 { // make a new trie with a root node (Empty)
-    root = new Node();
+    root = new Node()
 }
 
 bool Trie::insert(string str)
