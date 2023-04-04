@@ -10,7 +10,7 @@ bool Trie::insert(string str)
 { // inserts a string
 }
 
-int Trie::count()
+int Trie::getCount()
 {
     return count;
 }

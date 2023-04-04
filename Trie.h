@@ -8,7 +8,7 @@ class Trie
 {
 public:
     Trie(); // default constructor
-    int count();
+    int getCount();
     int getSize();
 
 private:
