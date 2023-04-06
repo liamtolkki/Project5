@@ -1,5 +1,5 @@
-#include "Trie.h"
 #include "Node.h"
+#include "Trie.h"
 using namespace std;
 
 Trie::Trie()
