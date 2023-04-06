@@ -1,4 +1,5 @@
 #include "Trie.h"
+#include "Node.h"
 using namespace std;
 
 Trie::Trie()
@@ -8,21 +9,21 @@ Trie::Trie()
 
 bool Trie::insert(string str)
 {                         // inserts a string
-    Node *current = root; // holds the starting node
+    Node *currentNode = root; // holds the starting node
     for (int i = 0; i < str.size(); i++)
     {                                   // this repeats for every character in the string
-        char current = str[i];          // gets the current character in the string
-        int arrIndex = ('a' - current); // used for progressing the trie node index
-        if (current->getNext(arrIndex) != nullptr)
+        char currentChar = str[i];          // gets the current character in the string
+        int arrIndex = ('a' - currentChar); // used for progressing the trie node index
+        if (currentNode->getNext(arrIndex) != nullptr)
         {
-            current = current->getNext(arrIndex);
+            currentNode = currentNode->getNext(arrIndex);
         }
     }
 }
 
 int Trie::getCount()
 {
-    return count;
+    return wordCount;
 }
 int Trie::getSize()
 {
