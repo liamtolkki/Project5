@@ -4,7 +4,7 @@ class Node
 {
 public:
     Node();
-    Node *getNext(int index); // This returns the pointer at the given index
+    Node *&getIndex(int index); // returns the node at the proper index
 
 private:
     Node *charList[27]; // will hold the pointers for the next char A-Z

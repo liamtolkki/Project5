@@ -8,15 +8,7 @@ Node::Node() // default node constructor
         charNode = nullptr;
     }
 }
-Node *Node::getNext(int index)
+Node *&Node::getIndex(int index)
 {
-
-    if (charList[index] == nullptr)
-    {
-        return nullptr;
-    }
-    else
-    {
-        return charList[index];
-    }
+    return charList[index];
 }
