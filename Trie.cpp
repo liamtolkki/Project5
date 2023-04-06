@@ -1,5 +1,5 @@
-using namespace std;
 #include "Trie.h"
+using namespace std;
 
 Trie::Trie()
 { // make a new trie with a root node (Empty)
