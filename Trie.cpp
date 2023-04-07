@@ -49,3 +49,26 @@ int Trie::getSize()
 {
     return size;
 }
+
+bool Trie::find(string str)
+{ // finds a string
+    Node *currentNode = root;
+    for (int i = 0; i < str.size(); i++)
+    {
+        char currentChar = str[i];
+        int index = ((-1) * ('a' - currentChar)); // gets the index
+        if (currentNode->getIndex(index) != nullptr)
+        { // follows the traversal
+            currentNode = currentNode->getIndex(index);
+        }
+        else // if the index is nullptr:
+            return false;
+    }
+    // when the loop is done, look for an end of string (EOS) pointer:
+    if (currentNode->getIndex(26) != nullptr)
+    { // EOS position
+        return true;
+    }
+    else
+        return false; // if no EOS pointer, then the word DNE
+}

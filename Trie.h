@@ -11,6 +11,7 @@ public:
     int getCount();
     int getSize();
     bool insert(string str);
+    bool find(string str);
 
 private:
     int wordCount, size; // int vars

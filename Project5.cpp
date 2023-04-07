@@ -35,5 +35,11 @@ int main()
         cerr << "Couldn't open file!" << endl;
     }
 
+    cout << "Testing find()..." << endl;
+    cout << "Word: 'hello', Should be: 1. Result:   " << wordTrie.find("hello") << endl;
+    cout << "Word: 'coffee', Should be: 1. Result:   " << wordTrie.find("coffee") << endl;
+    cout << "Word: 'jjjjo', Should be: 0. Result:   " << wordTrie.find("jjjjo") << endl;
+    cout << "Word: 'capacitance', Should be: 1. Result:   " << wordTrie.find("capacitance") << endl;
+
     return 0;
 }
