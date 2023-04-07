@@ -2,10 +2,10 @@
 
 Node::Node() // default node constructor
 {
-    for (Node *charNode : charList)
+    for (int i = 0; i < 27; i++)
     { // upon creation, all branches will be
         // initialized to null pointers
-        charNode = nullptr;
+        charList[i] = nullptr;
     }
 }
 Node *&Node::getIndex(int index)

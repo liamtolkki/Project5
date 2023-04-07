@@ -10,9 +10,10 @@ public:
     Trie(); // default constructor
     int getCount();
     int getSize();
+    bool insert(string str);
 
 private:
     int wordCount, size; // int vars
-    bool insert(string str);
+
     Node *root;
 };

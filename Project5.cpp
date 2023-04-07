@@ -16,6 +16,7 @@ int main()
 
     ifstream fileIn("wordlist_windows.txt"); // gets the word file
     vector<string> wordBank;
+    Trie wordTrie; // the trie
     cout << "Opening file..." << endl;
     // make sure there is no error:
     if (fileIn.good())
@@ -25,7 +26,8 @@ int main()
         while (!fileIn.eof())
         {
             fileIn >> word;
-            wordBank.push_back(word);
+            bool inserted;
+            inserted = wordTrie.insert(word);
         }
     }
     else
