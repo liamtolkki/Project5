@@ -40,13 +40,21 @@ int main()
     cout << "Word: 'coffee', Should be: 1. Result:   " << wordTrie.find("coffee") << endl;
     cout << "Word: 'jjjjo', Should be: 0. Result:   " << wordTrie.find("jjjjo") << endl;
     cout << "Word: 'capacitance', Should be: 1. Result:   " << wordTrie.find("capacitance") << endl;
-
-    cout << "Testing the complete function: fir..." << endl
-         << "Results:" << endl;
-    vector<string> completed = wordTrie.complete("fir");
-    for (int i = 0; i < completed.size(); i++)
+    string input;
+    do
     {
-        cout << completed[i] << endl;
-    }
+        cout << "Please enter a word prefix or press enter to exit: ";
+
+        getline(cin, input);
+        if (!input.empty())
+        {
+            vector<string> completed = wordTrie.complete(input);
+            for (int i = 0; i < completed.size(); i++)
+            {
+                cout << completed[i] << endl;
+            }
+        }
+    } while (!input.empty());
+
     return 0;
 }
