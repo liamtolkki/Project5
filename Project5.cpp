@@ -41,5 +41,12 @@ int main()
     cout << "Word: 'jjjjo', Should be: 0. Result:   " << wordTrie.find("jjjjo") << endl;
     cout << "Word: 'capacitance', Should be: 1. Result:   " << wordTrie.find("capacitance") << endl;
 
+    cout << "Testing the complete function: fir..." << endl
+         << "Results:" << endl;
+    vector<string> completed = wordTrie.complete("fir");
+    for (int i = 0; i < completed.size(); i++)
+    {
+        cout << completed[i] << endl;
+    }
     return 0;
 }

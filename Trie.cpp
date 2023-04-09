@@ -1,5 +1,6 @@
 #include "Node.h"
 #include "Trie.h"
+#include <iostream>
 using namespace std;
 
 Trie::Trie()
@@ -13,9 +14,9 @@ bool Trie::insert(string str)
 {                             // inserts a string
     Node *currentNode = root; // holds the starting node
     for (int i = 0; i < str.size(); i++)
-    {                                              // this repeats for every character in the string
-        char currentChar = str[i];                 // gets the current character in the string
-        int arrIndex = (-1 * ('a' - currentChar)); // used for progressing the trie node index
+    {                                       // this repeats for every character in the string
+        char currentChar = str[i];          // gets the current character in the string
+        int arrIndex = (currentChar - 'a'); // used for progressing the trie node index
         //-1 used to make it positive, since 'a' <= currentChar
         if (currentNode->getIndex(arrIndex) == nullptr)
         {
@@ -50,13 +51,24 @@ int Trie::getSize()
     return size;
 }
 
+string Trie::charsToString(vector<char> charVec)
+{ // this turns the char vector into a string
+    string concatenated;
+    for (int i = 0; i < charVec.size(); i++)
+    {
+        // string builder
+        concatenated += charVec[i];
+    }
+    return concatenated;
+}
+
 bool Trie::find(string str)
 { // finds a string
     Node *currentNode = root;
     for (int i = 0; i < str.size(); i++)
     {
         char currentChar = str[i];
-        int index = ((-1) * ('a' - currentChar)); // gets the index
+        int index = (currentChar - 'a'); // gets the index
         if (currentNode->getIndex(index) != nullptr)
         { // follows the traversal
             currentNode = currentNode->getIndex(index);
@@ -71,4 +83,41 @@ bool Trie::find(string str)
     }
     else
         return false; // if no EOS pointer, then the word DNE
+}
+
+void Trie::completeHelper(Node *current, const string &str, vector<string> &words)
+{
+
+    if (current->getIndex(26) != nullptr)
+    {
+        words.push_back(str); // in this case, str will be the completed word
+    }
+    for (int i = 0; i < 26; i++)
+    {
+        if (current->getIndex(i) != nullptr)
+        {
+            char c = 'a' + i; // converts index to char
+            completeHelper((current->getIndex(i)), (str + c), words);
+        }
+    }
+}
+
+vector<string> Trie::complete(string str)
+{
+    vector<string> wordVec;
+    Node *current = root; // start with the root
+    for (int i = 0; i < str.length(); i++)
+    { // this gets the starting node for the complete() vector
+        int index = (str[i] - 'a');
+        if (current->getIndex(index) != nullptr) // progress the trie
+        {
+            current = current->getIndex(str[i] - 'a');
+        }
+        else
+        { // if there is no word that starts with str
+            return wordVec;
+        }
+    }
+    completeHelper(current, str, wordVec); // this is a recursive function
+    return wordVec;                        // return the list of words
 }
