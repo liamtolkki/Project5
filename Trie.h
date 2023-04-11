@@ -8,13 +8,16 @@ using namespace std;
 class Trie
 {
 public:
-    Trie(); // default constructor
+    Trie();  // default constructor
+    ~Trie(); // destructor
     int getCount();
     int getSize();
     bool insert(string str);
     bool find(string str);
     int completeCount(string str);
     vector<string> complete(string str);
+    Trie &operator=(const Trie &);
+    void copyHelper(Node *&current1, Node *&current2);
 
 private:
     int wordCount, size; // int vars

@@ -4,6 +4,7 @@ class Node
 {
 public:
     Node();
+    ~Node();                    // node destructor
     Node *&getIndex(int index); // returns the node at the proper index
 
 private:

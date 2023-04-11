@@ -35,26 +35,31 @@ int main()
         cerr << "Couldn't open file!" << endl;
     }
 
-    cout << "Testing find()..." << endl;
-    cout << "Word: 'hello', Should be: 1. Result:   " << wordTrie.find("hello") << endl;
-    cout << "Word: 'coffee', Should be: 1. Result:   " << wordTrie.find("coffee") << endl;
-    cout << "Word: 'jjjjo', Should be: 0. Result:   " << wordTrie.find("jjjjo") << endl;
-    cout << "Word: 'capacitance', Should be: 1. Result:   " << wordTrie.find("capacitance") << endl;
-    string input;
+    string input1;
+    string input2;
+
     do
     {
         cout << "Please enter a word prefix or press enter to exit: ";
 
-        getline(cin, input);
-        if (!input.empty())
+        getline(cin, input1);
+        if (!input1.empty())
         {
-            vector<string> completed = wordTrie.complete(input);
-            for (int i = 0; i < completed.size(); i++)
+            vector<string> completed = wordTrie.complete(input1);
+            if (!completed.empty())
             {
-                cout << completed[i] << endl;
+                cout << "there are " << completed.size() << " completions starting with: '" << input1 << "'. Show completions (y/n)? ";
+                getline(cin, input2);
+                if (input2 == "y" || input2 == "yes")
+                {
+                    for (int i = 0; i < completed.size(); i++)
+                    {
+                        cout << completed[i] << endl;
+                    }
+                }
             }
         }
-    } while (!input.empty());
 
+    } while (!input1.empty());
     return 0;
 }

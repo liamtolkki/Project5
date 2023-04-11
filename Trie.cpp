@@ -10,6 +10,11 @@ Trie::Trie()
     size = 1; // this is including the root node
 }
 
+Trie::~Trie()
+{
+    delete root; // this calls the node destructor which deletes every sub node
+}
+
 bool Trie::insert(string str)
 {                             // inserts a string
     Node *currentNode = root; // holds the starting node
@@ -51,6 +56,35 @@ int Trie::getSize()
     return size;
 }
 
+void Trie::copyHelper(Node *&current1, Node *&current2)
+{
+    if (current1 == nullptr)
+    {
+        return;
+    }
+
+    for (int i = 0; i < 27; i++) // EOS node is considered in this loop
+    {
+        if (current1->getIndex(i) != nullptr)
+        {
+            current2->getIndex(i) = new Node(); // creates a new and independent node
+            copyHelper(current1->getIndex(i), current2->getIndex(i));
+        }
+    }
+}
+
+Trie &Trie::operator=(const Trie &other)
+{
+    delete root; // this will delete the tree's nodes that will be copied to
+    // this means it will be a clean trie
+    Node *current1 = other.root;
+    root = new Node(); // makes a new root node
+    Node *current2 = root;
+    copyHelper(current1, current2);
+
+    return *this;
+}
+
 string Trie::charsToString(vector<char> charVec)
 { // this turns the char vector into a string
     string concatenated;
@@ -60,6 +94,12 @@ string Trie::charsToString(vector<char> charVec)
         concatenated += charVec[i];
     }
     return concatenated;
+}
+
+int Trie::completeCount(string str)
+{
+    vector<string> words = complete(str);
+    return words.size();
 }
 
 bool Trie::find(string str)
@@ -96,8 +136,8 @@ void Trie::completeHelper(Node *current, const string &str, vector<string> &word
     {
         if (current->getIndex(i) != nullptr)
         {
-            char c = 'a' + i; // converts index to char
-            completeHelper((current->getIndex(i)), (str + c), words);
+            char c = 'a' + i;                                         // converts index to char
+            completeHelper((current->getIndex(i)), (str + c), words); // recursive call
         }
     }
 }
@@ -115,6 +155,7 @@ vector<string> Trie::complete(string str)
         }
         else
         { // if there is no word that starts with str
+            cout << "No words that start with: " << str << endl;
             return wordVec;
         }
     }
